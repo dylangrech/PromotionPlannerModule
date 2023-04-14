@@ -1,0 +1,20 @@
+{
+  "name": "pp/promotionplanner",
+  "description": "planning a promotion",
+  "type": "oxideshop-module",
+  "license": "proprietary",
+  "version": "1.0",
+  "author": {
+    "name": "Dylan Grech"
+  },
+  "extra": {
+    "oxideshop": {
+      "target-directory": "pp/PromotionPlanner"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "pp\\PromotionPlanner\\": "../../../source/modules/pp/PromotionPlanner/"
+    }
+  }
+}
