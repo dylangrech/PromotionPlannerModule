@@ -84,7 +84,7 @@
                 [{oxmultilang ident="FC_PROMOTION_PLANER_IMAGE"}]
             </td>
             <td class="edittext">
-                <input type="file" class="editinput" name="myfile[PROMO_ARTICLE@oxarticles__fcpromotionplannerimage]" [{$readonly}]>
+                <input onchange="loadFile(event)" type="file" class="editinput" name="myfile[PROMO_ARTICLE@oxarticles__fcpromotionplannerimage]" [{$readonly}]>
                 [{oxinputhelp ident="HELP_FC_PROMOTION_PLANER_IMAGE"}]
             </td>
         </tr>
@@ -95,6 +95,16 @@
         </tr>
     </table>
 </form>
+<img id="output"/>
+<script>
+    var loadFile = function(event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function() {
+            URL.revokeObjectURL(output.src) // free memory
+        }
+    };
+</script>
 
 [{include file="bottomnaviitem.tpl"}]
 

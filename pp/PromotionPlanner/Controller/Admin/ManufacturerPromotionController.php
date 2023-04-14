@@ -2,7 +2,6 @@
 
 namespace pp\PromotionPlanner\Controller\Admin;
 
-use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Application\Controller\Admin\AdminDetailsController;
 
 class ManufacturerPromotionController extends AdminDetailsController

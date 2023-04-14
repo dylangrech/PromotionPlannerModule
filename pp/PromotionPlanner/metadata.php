@@ -60,9 +60,9 @@ $aModule = [
     ],
     'blocks'      => [
         [
-            'template' => 'page/details/inc/productmain.tpl',
-            'block' => 'details_productmain_title',
-            'file' => 'promotion_planner.tpl'
+            'template' => 'layout/page.tpl',
+            'block'    => 'content_main',
+            'file'     => 'promotion_planner.tpl'
         ],
         [
             'template' => 'page/details/inc/productmain.tpl',
