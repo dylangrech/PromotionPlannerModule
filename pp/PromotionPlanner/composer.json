@@ -1,20 +1,19 @@
 {
-  "name": "pp/promotionplanner",
-  "description": "planning a promotion",
-  "type": "oxideshop-module",
-  "license": "proprietary",
-  "version": "1.0",
-  "author": {
-    "name": "Dylan Grech"
-  },
-  "extra": {
-    "oxideshop": {
-      "target-directory": "pp/PromotionPlanner"
-    }
-  },
-  "autoload": {
-    "psr-4": {
-      "pp\\PromotionPlanner\\": "../../../source/modules/pp/PromotionPlanner/"
-    }
-  }
+    "name": "dylangrech/promotion-planner",
+    "description": "Module for planning a promotion for an article, category or manufacturer",
+    "require": {
+        "php": "^7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dylangrech\\PromotionPlanner\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "DylanGrech",
+            "email": "dylan.grech@fatchip.de"
+        }
+    ],
+    "minimum-stability": "dev"
 }
