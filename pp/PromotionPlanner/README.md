@@ -15,7 +15,7 @@
 <code>git clone https://github.com/dylangrech/PromotionPlannerModule</code>
 <h3>Third Step (Manual Installation):</h3>
 <p>As soon as you download the module, make sure to unzip or open the folder. Make sure to copy the pp folder</p>
-<img src="instructionImages/SteptwoFolderCopy.png">
+<img src="instructionImages/secondStepFolder.png">
 <p>Afterwards paste the folder in the modules folder found in source/modules</p>
 <h3>Fourth Step (Manual Installation):</h3>
 <p>Lastly, as soon as you have copied the content, type in the following commands in the terminal(make sure you are in the oxid eshop of your choice):</p>
