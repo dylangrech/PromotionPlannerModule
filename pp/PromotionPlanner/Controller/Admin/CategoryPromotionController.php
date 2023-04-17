@@ -2,49 +2,30 @@
 
 namespace pp\PromotionPlanner\Controller\Admin;
 
-use OxidEsales\Eshop\Application\Controller\Admin\AdminDetailsController;
-
-class CategoryPromotionController extends AdminDetailsController
+class CategoryPromotionController extends PromotionPlannerController
 {
     protected $_sThisTemplate = "fc_category_promotion.tpl";
+    protected $oModel = \OxidEsales\Eshop\Application\Model\Category::class;
 
     /**
-     * Loads category object data, pases it to Smarty engine and returns
-     * name of template file "category_text.tpl".
+     * Loads category promotion related information - Smarty
+     * engine, returns name of template file "fc_category_promotion.tpl".
      *
      * @return string
      */
     public function render()
     {
         parent::render();
-
-        $oCategory = oxNew(\OxidEsales\Eshop\Application\Model\Category::class);
-
-        $soxId = $this->getEditObjectId();
-        if (isset($soxId) && $soxId != "-1") {
-            // load object
-            $oCategory->load($soxId);
-        }
-        $this->_aViewData['edit'] = $oCategory;
-
-        return "fc_category_promotion.tpl";
+        $this->loadObjectDetails($this->oModel);
+        return $this->_sThisTemplate;
     }
 
     /**
-     * Saves category description text to DB.
-     *
-     *
+     * Saves promotion details and uploaded picture to server/database.
      */
     public function save()
     {
         parent::save();
-        $soxId = $this->getEditObjectId();
-        $aParams = \OxidEsales\Eshop\Core\Registry::getConfig()->getRequestParameter("editval");
-
-        $oCategory = oxNew(\OxidEsales\Eshop\Application\Model\Category::class);
-        $oCategory->load($soxId);
-        $oCategory->assign($aParams);
-        $oCategory = \OxidEsales\Eshop\Core\Registry::getUtilsFile()->processFiles($oCategory);
-        $oCategory->save();
+        $this->savePromotionDetails($this->oModel);
     }
 }

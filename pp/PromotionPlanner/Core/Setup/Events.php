@@ -10,6 +10,11 @@ use OxidEsales\Eshop\Core\Registry;
 class Events extends Base
 {
 
+    /**
+     * Updates the views in the database
+     *
+     * @return void
+     */
     public static function rebuildViews()
     {
         if (Registry::getSession()->getVariable('malladmin')) {
@@ -18,6 +23,12 @@ class Events extends Base
         }
     }
 
+    /**
+     * Alters the article, category and manufacturer tables on activation
+     *
+     * @return void
+     * @throws \OxidEsales\Eshop\Core\Exception\DatabaseConnectionException
+     */
     public static function alterArticleTableOnActivate()
     {
         $oDb = DatabaseProvider::getDb();
@@ -41,6 +52,14 @@ class Events extends Base
         self::executeQueries("SHOW COLUMNS FROM oxcategories LIKE 'FCPROMOTIONPLANNERACTIVEFROM'", $aQueriesCategory, $oDb);
     }
 
+    /**
+     * Executes the given queries. Used to shorten the code.
+     *
+     * @param $sCheckQuery
+     * @param $aQueries
+     * @param $oDb
+     * @return void
+     */
     public static function executeQueries($sCheckQuery, $aQueries, $oDb)
     {
         if ($oDb->getOne($sCheckQuery) === false) {
@@ -50,6 +69,12 @@ class Events extends Base
         }
     }
 
+    /**
+     * Executed on module activation
+     *
+     * @return void
+     * @throws \OxidEsales\Eshop\Core\Exception\DatabaseConnectionException
+     */
     public static function onActivate()
     {
         self::alterArticleTableOnActivate();

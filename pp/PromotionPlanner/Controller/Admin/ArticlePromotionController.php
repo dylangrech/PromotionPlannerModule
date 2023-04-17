@@ -8,22 +8,20 @@ class ArticlePromotionController extends PromotionPlannerController
     protected $oModel = \OxidEsales\Eshop\Application\Model\Article::class;
 
     /**
-     * Loads article information - pictures, passes data to Smarty
-     * engine, returns name of template file "article_pictures.tpl".
+     * Loads article promotion related information - Smarty
+     * engine, returns name of template file "fc_article_promotion.tpl".
      *
      * @return string
      */
     public function render()
     {
         parent::render();
-        $this->loadObjectAndTemplate($this->oModel);
+        $this->loadObjectDetails($this->oModel);
         return $this->_sThisTemplate;
     }
 
     /**
-     * Saves (uploads) pictures to server.
-     *
-     *
+     * Saves promotion details and uploaded picture to server/database.
      */
     public function save()
     {

@@ -5,12 +5,12 @@
             <div class="card text-center">
                 <div class="card-body">
                     <div class="d-flex justify-content-center">
-                        <img class="img-responsive" src="[{$actCategory->getImageUrl()}]">
+                        <img style="width: 1000px; height: 200px; display: block; margin-left: auto; margin-right: auto;" class="img-responsive" src="[{$actCategory->getImageUrl()}]">
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    [{/if}]
+[{/if}]
 
 [{$smarty.block.parent}]

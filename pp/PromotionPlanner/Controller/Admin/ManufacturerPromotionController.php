@@ -2,51 +2,31 @@
 
 namespace pp\PromotionPlanner\Controller\Admin;
 
-use OxidEsales\Eshop\Application\Controller\Admin\AdminDetailsController;
-
-class ManufacturerPromotionController extends AdminDetailsController
+class ManufacturerPromotionController extends PromotionPlannerController
 {
     protected $_sThisTemplate = "fc_manufacturer_promotion.tpl";
+    protected $oModel = \OxidEsales\Eshop\Application\Model\Manufacturer::class;
 
     /**
-     * Executes parent method parent::render(),
-     * and returns name of template file
-     * "manufacturer_main.tpl".
+     * Loads manufacturer promotion related information - Smarty
+     * engine, returns name of template file "fc_manufacturer_promotion.tpl".
      *
      * @return string
      */
     public function render()
     {
         parent::render();
-
-        $oManufacturer = oxNew(\OxidEsales\Eshop\Application\Model\Manufacturer::class);
-
-        $soxId = $this->getEditObjectId();
-        if (isset($soxId) && $soxId != "-1") {
-            // load object
-            $oManufacturer->load($soxId);
-        }
-        $this->_aViewData["edit"] = $oManufacturer;
-
-        return "fc_manufacturer_promotion.tpl";
+        $this->loadObjectDetails($this->oModel);
+        return $this->_sThisTemplate;
     }
 
     /**
-     * Saves selection list parameters changes.
-     *
-     *
+     * Saves promotion details and uploaded picture to server/database.
      */
     public function save()
     {
         parent::save();
-        $soxId = $this->getEditObjectId();
-        $aParams = \OxidEsales\Eshop\Core\Registry::getConfig()->getRequestParameter("editval");
-
-        $oManufacturer = oxNew(\OxidEsales\Eshop\Application\Model\Manufacturer::class);
-        $oManufacturer->load($soxId);
-        $oManufacturer->assign($aParams);
-        $oManufacturer = \OxidEsales\Eshop\Core\Registry::getUtilsFile()->processFiles($oManufacturer);
-        $oManufacturer->save();
+        $this->savePromotionDetails($this->oModel);
     }
 
 }

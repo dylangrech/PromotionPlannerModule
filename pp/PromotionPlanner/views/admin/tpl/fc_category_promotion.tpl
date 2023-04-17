@@ -21,50 +21,77 @@
     <input type="hidden" name="editval[oxcategories__oxid]" value="[{$oxid}]">
     <table cellspacing="0" cellpadding="0" border="0" style="width:98%;">
         <tr>
-            <td class="edittext">
-                [{oxmultilang ident="FC_PROMOTION_PLANER_FROM"}]
+            <td class="picPreviewCol" valign="top">
+                <h3>[{oxmultilang ident="FC_PROMOTION_PLANNER_IMAGE_PREVIEW_TITLE"}]</h3>
+                <p>[{oxmultilang ident="FC_PROMOTION_PLANNER_IMAGE_PREVIEW_INSTRUCTIOPNS"}]</p>
+                <div id="exampleBox" style="width: 800px; text-align: center; height: 100px; border: 1px solid black; padding: 50px; margin: 20px;">
+                    <p>[{oxmultilang ident="FC_PROMOTION_PLANNER_IMAGE_PREVIEW_EXAMPLE_SIZE"}]</p>
+                </div>
+                <img style="display: block; margin-left: auto; margin-right: auto;"  class="img-responsive" id="output"/>
             </td>
-            <td class="edittext">
-                <input step="1" type="datetime-local" class="editinput" name="editval[oxcategories__fcpromotionplanneractivefrom]" value="[{$edit->oxcategories__fcpromotionplanneractivefrom->value}]" [{$readonly}]>
-                [{oxinputhelp ident="HELP_FC_PROMOTION_PLANER_FROM"}]
-            </td>
-        </tr>
-        <tr>
-            <td class="edittext">
-                [{oxmultilang ident="FC_PROMOTION_PLANER_TILL"}]
-            </td>
-            <td class="edittext">
-                <input step="1" type="datetime-local" class="editinput" name="editval[oxcategories__fcpromotionplanneractivetill]" value="[{$edit->oxcategories__fcpromotionplanneractivetill->value}]" [{$readonly}]>
-                [{oxinputhelp ident="HELP_FC_PROMOTION_PLANER_TILL"}]
-            </td>
-        </tr>
-        <tr>
-            <td class="edittext">
-                [{oxmultilang ident="FC_PROMOTION_PLANER_IMAGE_NAME"}]
-            </td>
-            <td class="edittext">
-                <input readonly type="text" class="editinput" size="25" value="[{$edit->oxcategories__fcpromotionplannerimage->value}]" >
-                [{oxinputhelp ident="HELP_FC_PROMOTION_PLANER_IMAGE_NAME"}]
-            </td>
-        </tr>
-        <tr>
-            <td class="edittext">
-                [{oxmultilang ident="FC_PROMOTION_PLANER_IMAGE"}]
-            </td>
-            <td class="edittext">
-                <input type="file" class="editinput" name="myfile[PROMO_CATEGORY@oxcategories__fcpromotionplannerimage]" [{$readonly}]>
-                [{oxinputhelp ident="HELP_FC_PROMOTION_PLANER_IMAGE"}]
-            </td>
-        </tr>
-        <tr>
-            <td class="edittext">
-            </td>
-            <td class="edittext" colspan="2"><br>
-                <input type="submit" class="edittext" name="save" value="[{oxmultilang ident="CATEGORY_MAIN_SAVE"}]" onClick="Javascript:document.myedit.fnc.value='save'" [{$readonly}]><br>
+            <td class="picEditCol">
+                <table>
+                    <tr>
+                        <td class="edittext">
+                            [{oxmultilang ident="FC_PROMOTION_PLANER_FROM"}]
+                        </td>
+                        <td class="edittext">
+                            <input step="1" type="datetime-local" class="editinput" name="editval[oxcategories__fcpromotionplanneractivefrom]" value="[{$edit->oxcategories__fcpromotionplanneractivefrom->value}]" [{$readonly}]>
+                            [{oxinputhelp ident="HELP_FC_PROMOTION_PLANER_FROM"}]
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="edittext">
+                            [{oxmultilang ident="FC_PROMOTION_PLANER_TILL"}]
+                        </td>
+                        <td class="edittext">
+                            <input step="1" type="datetime-local" class="editinput" name="editval[oxcategories__fcpromotionplanneractivetill]" value="[{$edit->oxcategories__fcpromotionplanneractivetill->value}]" [{$readonly}]>
+                            [{oxinputhelp ident="HELP_FC_PROMOTION_PLANER_TILL"}]
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="edittext">
+                            [{oxmultilang ident="FC_PROMOTION_PLANER_IMAGE_NAME"}]
+                        </td>
+                        <td class="edittext">
+                            <input readonly type="text" class="editinput" size="25" value="[{$edit->oxcategories__fcpromotionplannerimage->value}]" >
+                            [{oxinputhelp ident="HELP_FC_PROMOTION_PLANER_IMAGE_NAME"}]
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="edittext">
+                            [{oxmultilang ident="FC_PROMOTION_PLANER_IMAGE"}]
+                        </td>
+                        <td class="edittext">
+                            <input onchange="loadFile(event)" type="file" class="editinput" name="myfile[PROMO_CATEGORY@oxcategories__fcpromotionplannerimage]" [{$readonly}]>
+                            [{oxinputhelp ident="HELP_FC_PROMOTION_PLANER_IMAGE"}]
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="edittext">
+                        </td>
+                        <td class="edittext" colspan="2"><br>
+                            <input type="submit" class="edittext" name="save" value="[{oxmultilang ident="CATEGORY_MAIN_SAVE"}]" onClick="Javascript:document.myedit.fnc.value='save'" [{$readonly}]><br>
+                        </td>
+                    </tr>
+                </table>
             </td>
         </tr>
     </table>
 </form>
+<script>
+    var loadFile = function(event) {
+        let divExample = document.getElementById('exampleBox');
+        divExample.style.display = 'none';
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.width = 800;
+        output.height = 200;
+        output.onload = function() {
+            URL.revokeObjectURL(output.src) // free memory
+        }
+    };
+</script>
 
 [{include file="bottomnaviitem.tpl"}]
 

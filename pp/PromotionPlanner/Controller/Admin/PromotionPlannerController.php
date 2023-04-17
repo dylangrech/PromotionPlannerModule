@@ -6,17 +6,13 @@ use OxidEsales\Eshop\Application\Controller\Admin\AdminDetailsController;
 
 class PromotionPlannerController extends AdminDetailsController
 {
-    public function render()
-    {
-        parent::render();
-    }
-
-    public function save()
-    {
-        parent::save();
-    }
-
-    public function loadObjectAndTemplate($className)
+    /**
+     * Loads the details of the object that has been selected from the list
+     *
+     * @param $className
+     * @return void
+     */
+    public function loadObjectDetails($className)
     {
         $oModel = oxNew($className);
         $soxId = $this->getEditObjectId();
@@ -26,6 +22,12 @@ class PromotionPlannerController extends AdminDetailsController
         $this->_aViewData["edit"] = $oModel;
     }
 
+    /**
+     * Saves the details of the object that has been selected from the list
+     *
+     * @param $className
+     * @return void
+     */
     public function savePromotionDetails($className)
     {
         $soxId = $this->getEditObjectId();

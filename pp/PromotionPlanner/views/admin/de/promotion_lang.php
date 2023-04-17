@@ -4,6 +4,9 @@ $sLangName = 'Deutsch';
 
 $aLang = [
     'charset'   => 'UTF-8',
+    'FC_PROMOTION_PLANNER_IMAGE_PREVIEW_TITLE' => 'Bildvorschau',
+    'FC_PROMOTION_PLANNER_IMAGE_PREVIEW_INSTRUCTIOPNS' => 'Wir empfehlen Ihnen, ein Foto hochzuladen, das etwa 1000 x 200 Pixel groß ist. Da es wie ein Banner aussieht, wird es durch eine solche Bildgröße viel schöner und auffälliger für den Kunden. Sie können jedoch jedes beliebige Bild hochladen.',
+    'FC_PROMOTION_PLANNER_IMAGE_PREVIEW_EXAMPLE_SIZE' => 'Beispielgröße als Kästchen angezeigt',
     'FC_PROMOTION_PLANER_IMAGE' => 'Werbebanner bild',
     'HELP_FC_PROMOTION_PLANER_IMAGE' => 'Laden Sie das Bild hoch, das als Werbung angezeigt werden soll',
     'FC_PROMOTION_PLANER_FROM' => 'Werbebanner ist aktiv ab',

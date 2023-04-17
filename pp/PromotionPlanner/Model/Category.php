@@ -2,12 +2,19 @@
 
 namespace pp\PromotionPlanner\Model;
 
+use pp\PromotionPlanner\Model\PromotionPlanner;
+
 class Category extends Category_parent
 {
+    /**
+     * Checks if the promotion is active
+     *
+     * @return bool
+     */
     public function checkIfPromotionIsActive()
     {
-        $iActiveFrom = $this->getActiveFrom();
-        $iActiveTill = $this->getActiveTill();
+        $iActiveFrom = PromotionPlanner::getPromotionPlannerActiveFrom($this->oxcategories__fcpromotionplanneractivefrom);
+        $iActiveTill = PromotionPlanner::getPromotionPlannerActiveTill($this->oxcategories__fcpromotionplanneractivetill);
         $iCurrentTime = strtotime('now');
         if ($iActiveFrom <= $iCurrentTime && $iCurrentTime <= $iActiveTill) {
             return true;
@@ -15,39 +22,17 @@ class Category extends Category_parent
         return false;
     }
 
+    /**
+     * Returns the image url
+     *
+     * @return string|void
+     */
     public function getImageUrl()
     {
-        $sPromotionImage = $this->getPromotionImageName();
+        $sPromotionImage = PromotionPlanner::getPromotionPlannerImageName($this->oxcategories__fcpromotionplannerimage);
         if ($sPromotionImage !== '') {
             $sBaseURL = (new \OxidEsales\Eshop\Core\ViewConfig)->getBaseDir();
             return $sBaseURL.'/out/pictures/master/category/promotionImages/'.$sPromotionImage;
         }
-    }
-
-    public function getActiveFrom()
-    {
-        $iActiveFrom = $this->oxcategories__fcpromotionplanneractivefrom->value;
-        if ($iActiveFrom !== '') {
-            return strtotime($iActiveFrom);
-        }
-        return false;
-    }
-
-    public function getActiveTill()
-    {
-        $iActiveTill = $this->oxcategories__fcpromotionplanneractivetill->value;
-        if ($iActiveTill !== '') {
-            return strtotime($iActiveTill);
-        }
-        return false;
-    }
-
-    public function getPromotionImageName()
-    {
-        $sPromotionImage = $this->oxcategories__fcpromotionplannerimage->value;
-        if ($sPromotionImage !== '') {
-            return $sPromotionImage;
-        }
-        return false;
     }
 }

@@ -2,14 +2,19 @@
 
 namespace pp\PromotionPlanner\Model;
 
+use pp\PromotionPlanner\Model\PromotionPlanner;
+
 class Article extends Article_parent
 {
-    //declare properties
-
+    /**
+     * Checks if the promotion is active
+     *
+     * @return bool
+     */
     public function checkIfPromotionIsActive()
     {
-        $iActiveFrom = $this->getActiveFrom();
-        $iActiveTill = $this->getActiveTill();
+        $iActiveFrom = PromotionPlanner::getPromotionPlannerActiveFrom($this->oxarticles__fcpromotionplanneractivefrom);
+        $iActiveTill = PromotionPlanner::getPromotionPlannerActiveTill($this->oxarticles__fcpromotionplanneractivetill);
         $iCurrentTime = strtotime('now');
         if ($iActiveFrom <= $iCurrentTime && $iCurrentTime <= $iActiveTill) {
             return true;
@@ -17,40 +22,18 @@ class Article extends Article_parent
         return false;
     }
 
+    /**
+     * Returns the image url
+     *
+     * @return string|void
+     */
     public function getImageUrl()
     {
-        $sPromotionImage = $this->getPromotionImageName();
+        $sPromotionImage = PromotionPlanner::getPromotionPlannerImageName($this->oxarticles__fcpromotionplannerimage);
         if ($sPromotionImage !== '') {
             $sBaseURL = (new \OxidEsales\Eshop\Core\ViewConfig)->getBaseDir();
             return $sBaseURL.'/out/pictures/master/product/promotionImages/'.$sPromotionImage;
         }
-    }
-
-    public function getActiveFrom()
-    {
-        $iActiveFrom = $this->oxarticles__fcpromotionplanneractivefrom->value;
-        if ($iActiveFrom !== '') {
-            return strtotime($iActiveFrom);
-        }
-        return false;
-    }
-
-    public function getActiveTill()
-    {
-        $iActiveTill = $this->oxarticles__fcpromotionplanneractivetill->value;
-        if ($iActiveTill !== '') {
-            return strtotime($iActiveTill);
-        }
-        return false;
-    }
-
-    public function getPromotionImageName()
-    {
-        $sPromotionImage = $this->oxarticles__fcpromotionplannerimage->value;
-        if ($sPromotionImage !== '') {
-            return $sPromotionImage;
-        }
-        return false;
     }
 
 }

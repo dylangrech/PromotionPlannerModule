@@ -4,6 +4,9 @@ $sLangName = 'English';
 
 $aLang = [
     'charset'   => 'UTF-8',
+    'FC_PROMOTION_PLANNER_IMAGE_PREVIEW_TITLE' => 'Image Preview',
+    'FC_PROMOTION_PLANNER_IMAGE_PREVIEW_INSTRUCTIOPNS' => 'We recommend you to upload a photo that is about 1000px by 200px. Since it will look like a banner, such an image size will make it way nicer and eye catching for the customer. However, you can upload any image you like.',
+    'FC_PROMOTION_PLANNER_IMAGE_PREVIEW_EXAMPLE_SIZE' => 'Example Size displayed as a box',
     'FC_PROMOTION_PLANER_IMAGE' => 'Promotion Image',
     'HELP_FC_PROMOTION_PLANER_IMAGE' => 'Upload the image to be displayed as a promotion',
     'FC_PROMOTION_PLANER_FROM' => 'Promotion Active From',
